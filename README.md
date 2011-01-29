@@ -4,7 +4,7 @@
 
    This is a nginx configuration for running [WordPress](http://wordpress.org "WordPress").
    
-   It differs from the _usual_ configuration, like the
+   It **differs** from the _usual_ configuration, like the
    [one](http://wiki.nginx.org/Wordpress "Nginx Wiki WordPress
    config") available on the [Nginx Wiki](http://wiki.nginx.org "Nginx
    Wiki").
@@ -161,6 +161,6 @@
    + [piwik](https://github.com/perusio/piwik-nginx "Piwik Nginx
      configuration")
      
-   + [chive](https://github.com/perusio/piwik-nginx "Chive Nginx
+   + [chive](https://github.com/perusio/chive-nginx "Chive Nginx
      configuration")
 
