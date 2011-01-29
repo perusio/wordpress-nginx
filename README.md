@@ -153,14 +153,14 @@
    APT machinery will sort out for you any dependencies issues that
    might exist.
 
-## My other Nginx configurations on github
+## My other Nginx configs on github
 
-   + [drupal](https://github.com/perusio/drupal-with-nginx "Drupal
+   + [Drupal](https://github.com/perusio/drupal-with-nginx "Drupal
      Nginx configuration")
      
-   + [piwik](https://github.com/perusio/piwik-nginx "Piwik Nginx
+   + [Piwik](https://github.com/perusio/piwik-nginx "Piwik Nginx
      configuration")
      
-   + [chive](https://github.com/perusio/chive-nginx "Chive Nginx
+   + [Chive](https://github.com/perusio/chive-nginx "Chive Nginx
      configuration")
 
