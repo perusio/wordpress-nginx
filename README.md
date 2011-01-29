@@ -10,12 +10,11 @@
    Wiki").
    
    It makes use of **nested locations** with named capture groups
-   instead of
-   [fastcgi_split\_path\_info](http://wiki.nginx.org/HttpFcgiModule#fastcgi_split_path_info
-      "FastCGI split path info").
+   instead of [fastcgi_split\_path\_info](http://wiki.nginx.org/HttpFcgiModule#fastcgi_split_path_info
+   "FastCGI split path info").
 
    This example configuration assumes that the site is called
-   `example.com`.  Change accordingly to reflect your server setup.
+   `example.com`. Change accordingly to reflect your server setup.
    
 ## Features
 
@@ -80,7 +79,7 @@
    
    2. Clone the git repository from github:
    
-      `git clone https://github.com/perusio/chive-wordpress.git`
+      `git clone https://github.com/perusio/nginx-wordpress.git`
    
    3. Edit the `sites-available/example.com` configuration file to
       suit your requirements. Namely replacing `example.com` with
@@ -147,12 +146,12 @@
  
    It may work or not on Ubuntu. Since Ubuntu seems to appreciate more
    finding semi-witty names for their releases instead of making clear
-   what's the status of the software included, meaning. Is it
-   **stable**? Is it **testing**? Is it **unstable**? The package may
-   work with your currently installed environment or not. I don't have
-   the faintest idea which release to advise. So you're on your
-   own. Generally the APT machinery will sort out for you any
-   dependencies issues that might exist.
+   what's the status of the software included. Is it **stable**? Is it
+   **testing**? Is it **unstable**? The package may work with your
+   currently installed environment or not. I don't have the faintest
+   idea which release to advise. So you're on your own. Generally the
+   APT machinery will sort out for you any dependencies issues that
+   might exist.
 
 ## My other Nginx configurations on github
 
