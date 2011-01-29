@@ -119,6 +119,8 @@ server {
             ## Passing the request upstream to the FastCGI
             ## listener.
             fastcgi_pass unix:/tmp/php-cgi/php-cgi.socket;
+            ## Upload progress support.
+            track_uploads uploads 60s;
         }
     } # / location
 
@@ -126,6 +128,16 @@ server {
     location @nocache {
         try_files $uri $uri/ /index.php?q=$uri&$args;
     }
+
+    ## For upload progress to work.
+    location ~ (.*)/x-progress-id:(\w*) {
+        rewrite ^(.*)/x-progress-id:(\w*)  $1?X-Progress-ID=$2;
+    }
+
+    location ^~ /progress {
+        report_uploads uploads;
+    }
+
     
     # # The 404 is signaled through a static page.
     # error_page  404  /404.html;

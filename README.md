@@ -36,6 +36,9 @@
    5. Compatible with the WordPress plugin
       [wp-super-cache](http://wordpress.org/extend/plugins/wp-super-cache "WordPress
       SuperCache") for serving static pages to anonymous users.
+      
+   6. [Upload Progress](http://wiki.nginx.org/NginxHttpUploadProgressModule
+      "Upload progress Nginx module") support.   
    
 
 ## Basic Auth for access to restricted files like install.php
