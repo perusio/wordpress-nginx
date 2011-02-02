@@ -105,11 +105,11 @@
       Check that the socket is properly created and is listening. This
       can be done with `netstat`, like this for UNIX sockets:
       
-         netstat --unix -l
+         `netstat --unix -l`
          
       And like this for TCP sockets:   
          
-         netstat -t -l
+         `netstat -t -l`
    
       It should display the PHP CGI socket.
    
