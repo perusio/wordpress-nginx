@@ -104,7 +104,7 @@ server {
             fastcgi_param PATH_INFO $path_info;
             ## Passing the request upstream to the FastCGI
             ## listener.
-            fastcgi_pass unix:/tmp/php-cgi/php-cgi.socket;
+            fastcgi_pass phpcgi;
         }
 
         ## Regular PHP processing.
@@ -118,7 +118,7 @@ server {
             fastcgi_param PATH_INFO $path_info;
             ## Passing the request upstream to the FastCGI
             ## listener.
-            fastcgi_pass unix:/tmp/php-cgi/php-cgi.socket;
+            fastcgi_pass phpcgi;
             ## Upload progress support.
             track_uploads uploads 60s;
         }
