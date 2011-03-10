@@ -57,11 +57,17 @@ server {
     location ~* \.(?:js|css|png|jpg|jpeg|gif|ico)$ {
         expires max;
         log_not_found off;
+        ## No need to bleed constant updates. Send the all shebang in one
+        ## fell swoop.
+        tcp_nodelay off;
     }
 
     ## Keep a tab on the 'big' static files.
     location ~* ^.+\.(?:m4a|mp[34]|mov|ogg|flv|pdf|ppt[x]*)$ {
         expires 30d;
+        ## No need to bleed constant updates. Send the all shebang in one
+        ## fell swoop.
+        tcp_nodelay off;
     }
 
     ## Protect the readme.html file to not reveal the installed
