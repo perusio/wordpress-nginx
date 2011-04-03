@@ -144,6 +144,10 @@ server {
         report_uploads uploads;
     }
 
+
+    ## Including the php-fpm status and ping pages config.
+    ## Uncomment to enable if you're running php-fpm.
+    #include php_fpm_status.conf;
     
     # # The 404 is signaled through a static page.
     # error_page  404  /404.html;
