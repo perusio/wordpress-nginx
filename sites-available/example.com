@@ -17,24 +17,22 @@ server {
     server_name example.com;
     
     ## Parameterization using hostname of access and log filenames.
-    access_log  /var/log/nginx/example.com_access.log;
-    error_log   /var/log/nginx/example.com_error.log;
-
-    ## Include the blacklist.conf file.
-    include sites-available/blacklist.conf;
-
-    ## Disable all methods besides HEAD, GET and POST.
-    if ($request_method !~ ^(GET|HEAD|POST)$ ) {
-        return 444;
-    }
+    access_log /var/log/nginx/example.com_access.log;
+    error_log /var/log/nginx/example.com_error.log;
 
     ## Root and index files.
     root /var/www/sites/wp;
     index index.php index.html;
 
-
-    ## Don't use the server name for redirects.
-    server_name_in_redirect off;
+    ## See the blacklist.conf file at the parent dir: /etc/nginx.
+    ## Deny access based on the User-Agent header.
+    if ($bad_bot) {
+        return 444;
+    }
+    ## Deny access based on the Referer header.
+    if ($bad_referer) {
+        return 444;
+    }
     
     ## Cache control. Useful for WP super cache.
     add_header Cache-Control "store, must-revalidate, post-check=0, pre-check=0";
@@ -53,36 +51,12 @@ server {
         access_log off;
     }
     
-    ## Static files are served directly.
-    location ~* \.(?:js|css|png|jpg|jpeg|gif|ico)$ {
-        expires max;
-        log_not_found off;
-        ## No need to bleed constant updates. Send the all shebang in one
-        ## fell swoop.
-        tcp_nodelay off;
-    }
-
-    ## Keep a tab on the 'big' static files.
-    location ~* ^.+\.(?:m4a|mp[34]|mov|ogg|flv|pdf|ppt[x]*)$ {
-        expires 30d;
-        ## No need to bleed constant updates. Send the all shebang in one
-        ## fell swoop.
-        tcp_nodelay off;
-    }
-
     ## Protect the readme.html file to not reveal the installed
     ## version.
     location = /readme.html {
         auth_basic "Restricted Access"; # auth realm                          
         auth_basic_user_file .htpasswd-users; # htpasswd file
     }    
-
-    ## All files/directories that are protected and unaccessible from
-    ## the web.
-    location ~* ^.*(\.(?:git|svn|htaccess|txt|po[t]*))$ {
-        return 404;
-    }
-    
     
     ## Try the requested URI as files before handling it to PHP.
     location / {
@@ -125,8 +99,29 @@ server {
             ## Passing the request upstream to the FastCGI
             ## listener.
             fastcgi_pass phpcgi;
-            ## Upload progress support.
-            track_uploads uploads 60s;
+        }
+
+        ## All files/directories that are protected and unaccessible from
+        ## the web.
+        location ~* ^.*(\.(?:git|svn|htaccess|txt|po[t]*))$ {
+            return 404;
+        }
+
+        ## Static files are served directly.
+        location ~* \.(?:js|css|png|jpg|jpeg|gif|ico)$ {
+            expires max;
+            log_not_found off;
+            ## No need to bleed constant updates. Send the all shebang in one
+            ## fell swoop.
+            tcp_nodelay off;
+        }
+
+        ## Keep a tab on the 'big' static files.
+        location ~* ^.+\.(?:m4a|mp[34]|mov|ogg|flv|pdf|ppt[x]*)$ {
+            expires 30d;
+            ## No need to bleed constant updates. Send the all shebang in one
+            ## fell swoop.
+            tcp_nodelay off;
         }
     } # / location
 
@@ -134,16 +129,6 @@ server {
     location @nocache {
         try_files $uri $uri/ /index.php?q=$uri&$args;
     }
-
-    ## For upload progress to work.
-    location ~ (.*)/x-progress-id:(\w*) {
-        rewrite ^(.*)/x-progress-id:(\w*)  $1?X-Progress-ID=$2;
-    }
-
-    location ^~ /progress {
-        report_uploads uploads;
-    }
-
 
     ## Including the php-fpm status and ping pages config.
     ## Uncomment to enable if you're running php-fpm.
@@ -157,5 +142,4 @@ server {
     # location = /50x.html {
     # 	root   /var/www/nginx-default;
     # }
-
-} #  server
+} # server
