@@ -96,8 +96,8 @@
    
       `git clone https://github.com/perusio/nginx-wordpress.git`
    
-   3. Edit the `sites-available/example.com` configuration file to
-      suit your requirements. Namely replacing `example.com` with
+   3. Edit the `sites-available/example.com.conf` configuration file
+      to suit your requirements. Namely replacing `example.com` with
       **your** domain.
    
    4. Setup the PHP handling method. It can be:
@@ -196,7 +196,7 @@
    localhost and non-routable IPs of the 192.168.1.0 network.
     
    To enable the status and ping pages uncomment the line in the
-   `example.com` virtual host configuration file.   
+   `example.com.conf` virtual host configuration file.   
    
    
 ## Getting the latest Nginx packaged for Debian or Ubuntu
