@@ -42,7 +42,21 @@
    
    7. Possibility of using **Apache** as a backend for dealing with
       PHP. Meaning using Nginx as
-      [reverse proxy](http://wiki.nginx.org/HttpProxyModule "Nginx Proxy Module").
+      [reverse proxy](http://wiki.nginx.org/HttpProxyModule "Nginx
+      Proxy Module").
+      
+   8. Operating system
+      [open files cache](http://wiki.nginx.org/HttpCoreModule#open_file_cache)
+      for static assets like CSS and JS, for example.
+      
+   9. [FLV](http://wiki.nginx.org/HttpFlvStreamModule) and
+      [H264/AAC](http://nginx.org/en/docs/http/ngx_http_mp4_module.html)
+      pseudo streaming support. 
+      
+      Note that for **mp4** streaming to work properly, with seeking
+      enabled, you must use a **compatible player** and run a Nginx
+      version greater or equal to 1.1.3 for the development branch and
+      1.0.7 for the stable branch.
 
 ## Basic Auth for access to restricted files like install.php
 
