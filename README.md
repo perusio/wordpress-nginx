@@ -258,3 +258,8 @@
    
    Grab it [here](https://github.com/perusio/php-ini-cleanup "PHP
    cleanup script").
+
+## Acknowledgments
+
+   Thanks to [Burçe Boran](http://www.burceboran.com) for helping me
+   sort out the issues of the configuration for supercache 0.9.9.9.
