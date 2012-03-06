@@ -250,6 +250,9 @@
    + [Chive](https://github.com/perusio/chive-nginx "Chive Nginx
      configuration")
 
+   + [SquirrelMail](https://github.com/perusio/squirrelmail-nginx
+     "SquirrelMail Nginx configuration")
+
 ## Securing your PHP configuration
 
    I have created a small shell script that parses your `php.ini` and
